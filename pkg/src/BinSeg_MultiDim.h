@@ -30,6 +30,7 @@ class BinSeg_MultiDim
 {
 public:
 	Heap MyHeap;
+  int *iterations;
 	double **data;
 	int n;
 	int P;
@@ -37,8 +38,7 @@ public:
 	std::list<double> RupturesCost;
 	Node Best(int LowIndex, int HighIndex);
 	void Initialize(int NbRuptures);
-	BinSeg_MultiDim(double ** data_, int n_, int P_, int nbAllocSize);
-	//double Cost();
+	BinSeg_MultiDim(double ** data_, int n_, int P_, int nbAllocSize, int *iterations);
 };
 
 

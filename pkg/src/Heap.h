@@ -37,7 +37,7 @@ public:
   Heap(int AllocationSize);
   Heap();
   ~Heap();
-  void AddNode(Node N);
+  int AddNode(Node N);
   void RemoveHead();
 private:
   //void Debug();

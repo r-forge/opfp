@@ -1,3 +1,4 @@
+#include <R.h>
 /* February 2014 Guillem Rigaill <rigaill@evry.inra.fr> 
 
    This file is part of the R package fpop
@@ -39,7 +40,6 @@ Heap::Heap(int AllocationSize)
 {
 	//if (AllocationSize < NbNodes)
 	//	AllocationSize = NbNodes;
-	
 	if (AllocationSize < 100) 
 	{
 		AllocatedSize = 100; 
@@ -65,18 +65,22 @@ void Heap::ReAllocate()
 	AllocatedSize = NewAllocatedSize;
 }
 
-void Heap::AddNode(Node N)
+int Heap::AddNode(Node N)
 {
   if (HeapSize == AllocatedSize)
-		ReAllocate();
+    ReAllocate();
   int CurIndex = HeapSize;
-	MyHeap[CurIndex] = N;
+  MyHeap[CurIndex] = N;
+  int iterations = 0;
   while ((CurIndex > 0) && (MyHeap[CurIndex] < MyHeap[(CurIndex - 1) / 2]))
   {
+    iterations++;
+    Rprintf("iterations=%d\n", iterations);
     Swap(MyHeap[CurIndex], MyHeap[(CurIndex - 1) / 2]);
     CurIndex = (CurIndex - 1) / 2;
   }
   HeapSize++;
+  return iterations;
 }
 
 void Heap::RemoveHead()

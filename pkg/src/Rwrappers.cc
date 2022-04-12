@@ -36,7 +36,7 @@ void colibri_op_R_c_analysis (double *profil, int *nbi, double *lambda_, double 
 
 void BinSeg_interface
 (double * dataVec_, int * Kmax_, int * n_, int * P_,
- int * Ruptures_, double * RupturesCost_){
+ int * Ruptures_, double * RupturesCost_, int *iterations_){
   int n = *n_;
   int P = *P_;
   int Kmax = *Kmax_;
@@ -46,7 +46,7 @@ void BinSeg_interface
   for(int i =0; i< n; i++)
     for(int j=0; j < P; j++)
       data[i][j] = dataVec_[i+ n*j];
-  BinSeg_MultiDim BinSegRun(data, n, P, 2*Kmax + 10);
+  BinSeg_MultiDim BinSegRun(data, n, P, 2*Kmax + 10, iterations_);
   BinSegRun.Initialize(Kmax);
   int i=0;
   for
@@ -70,7 +70,7 @@ void BinSeg_interface
 
 
 R_CMethodDef cMethods[] = {
-  {"BinSeg_interface",(DL_FUNC) &BinSeg_interface, 6},
+  {"BinSeg_interface",(DL_FUNC) &BinSeg_interface, 7},
   {"colibri_op_R_c",(DL_FUNC) &colibri_op_R_c, 7},
   {"colibri_op_R_c_analysis",(DL_FUNC) &colibri_op_R_c_analysis, 8},
   {NULL, NULL, 0}

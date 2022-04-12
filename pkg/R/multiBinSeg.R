@@ -19,6 +19,7 @@ multiBinSeg <- function
           P= as.integer(nCol), 
           t.est= integer(Kmax),
           J.est = double(Kmax), 
+          iterations = integer(Kmax+1),
           PACKAGE="fpop")
   ##A$Cost <- sum(geno^2) - sum(apply(geno, 2, sum)^2/nRow) + c(0, cumsum(A$RupturesCost))
   A

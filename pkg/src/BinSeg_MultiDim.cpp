@@ -9,13 +9,12 @@
 
 #include "BinSeg_MultiDim.h"
 
-BinSeg_MultiDim::BinSeg_MultiDim(double **data_, int n_, int P_, int nbAllocSize_)
+BinSeg_MultiDim::BinSeg_MultiDim(double **data_, int n_, int P_, int nbAllocSize_, int *iterations_)
 {
 	data = data_;
 	n = n_;
 	P= P_;
-	//Node *TheN = NULL;
-	//MyHeap(nbAllocSize_);
+        iterations = iterations_;
 }
 /////  //////////////////////////////////
 
@@ -105,34 +104,22 @@ void  BinSeg_MultiDim::Initialize(int NbRuptures)
 //		FirstNode.HighIndex << std::endl;
 	
 	//MyHeap(FirstNode, 1, 2*NbRuptures+10);
-	MyHeap.AddNode(FirstNode);
-
+	*(iterations++) = MyHeap.AddNode(FirstNode);
 	for (int i = 0; i < NbRuptures; i++)
 	{
-	//	std::cout << "Round " << i << std::endl;
 		Node N = MyHeap.MyHeap[0];
-	//	std::cout << "Best Node : " << N.LowIndex << ", " << N.Index << ", " << N.HighIndex << std::endl;
-	//	std::cout << "Heap Lgth : " << MyHeap.HeapSize << std::endl;
-
 		Ruptures.push_back(N.Index);
 		RupturesCost.push_back(N.Value);
-
 		MyHeap.RemoveHead();
-	//	std::cout << "Heap Lgth' : " << MyHeap.HeapSize << std::endl;
-
 		if (N.Index - N.LowIndex > 1)
 		{
 			Node Left = Best(N.LowIndex, N.Index);
-			MyHeap.AddNode(Left);
-	//		std::cout << "Left->" << Left.Index << std::endl;
-
+			*iterations = MyHeap.AddNode(Left);
 		}
 		if (N.HighIndex - N.Index > 1)
 		{
 			Node Right = Best(N.Index, N.HighIndex);
-			MyHeap.AddNode(Right);
-	//		std::cout << "Right->" << Right.Index << std::endl;
-
+			*(iterations++) += MyHeap.AddNode(Right);
 		}
 	}
 }
@@ -140,4 +127,4 @@ void  BinSeg_MultiDim::Initialize(int NbRuptures)
 
 
 
-
+ 

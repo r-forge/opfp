@@ -88,7 +88,7 @@ for(pid.chr.i in seq_along(pid.chr.pelt.fast)){
                                   pelt={
     seg.funs$pelt.SIC(one.chrom)
   },
-                                  multiBinSeg={
+  multiBinSeg={
     seg.funs$multiBinSeg.52(one.chrom)
   })
   timings.microbenchmark <- rbind(timings.microbenchmark, {
