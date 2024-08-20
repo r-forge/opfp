@@ -1,59 +1,52 @@
-2020.4.8 TDH
+Changes in version 2024.8.20
 
-update DESCRIPTION Authors@R, Description from CRAN version.
+- Author: TDH
+- is.matrix() instead of class()=="matrix" in multiBinSeg.
 
-2020.4.3 TDH
+Changes in version 2020.4.8
 
-fix memory leak (remove delete poly from Liste destructor, only delete
-next if it is not NULL).
+- Author: TDH
+- update DESCRIPTION Authors@R, Description from CRAN version.
 
-fix cost computation and docs, now J.est is the total square loss and
-the cost is the total square loss plus the penalty constant times the
-number of segments.
+Changes in version 2020.4.3
 
-2019.05.03
+- Author: TDH
+- fix memory leak (remove delete poly from Liste destructor, only delete next if it is not NULL).
+- fix cost computation and docs, now J.est is the total square loss and the cost is the total square loss plus the penalty constant times the number of segments.
 
-Register BinSeg_interface in src/Rwrappers.cc -- this function is used
-with .C, and was formerly known as Call_BinSeg (renamed to avoid
-confusion because .Call is not used).
+Changes in version 2019.05.03
 
-2019.01.19
+- Register BinSeg_interface in src/Rwrappers.cc -- this function is used with .C, and was formerly known as Call_BinSeg (renamed to avoid confusion because .Call is not used).
 
-Remove dependency on cghseg.
+Changes in version 2019.01.19
 
-Register routines in src/Rwrappers.cc
+- Remove dependency on cghseg.
+- Register routines in src/Rwrappers.cc
 
-2016.10.25
+Changes in version 2016.10.25
 
-Fixed
-* checking package dependencies ... ERROR
-Namespace dependency not required: ‘cghseg’
+- Fixed * checking package dependencies ... ERROR Namespace dependency not required: ‘cghseg’
 
-2016.10.18
+Changes in version 2016.10.18
 
-Some improved documentation for the return values of Fpop.
+- Some improved documentation for the return values of Fpop.
+- Suggests: cghseg (instead of Depends).
+- packageStartupMessage (instead of cat) and .onAttach (instead of .onLoad).
 
-Suggests: cghseg (instead of Depends).
+Changes in version 2016.10.16
 
-packageStartupMessage (instead of cat) and .onAttach (instead of .onLoad).
+- Remove GSL requirement, instead use INFINITY which is defined in math.h
 
-2016.10.16
+Changes in version 2016.10.03
 
-Remove GSL requirement, instead use INFINITY which is defined in
-math.h
+- package and docs updates to pass R CMD check.
 
-2016.10.03
+Changes in version 2014.7.16
 
-package and docs updates to pass R CMD check.
+- multiBinSeg memory leak fixed.
+- passes R CMD check with no errors, no warnings.
 
-2014.7.16
+Changes in version 0.0.1
 
-multiBinSeg memory leak fixed.
-
-passes R CMD check with no errors, no warnings.
-
-0.0.1
-
-first version with fast fpop code.
-
-multiBinSeg produced a memory leak.
+- first version with fast fpop code.
+- multiBinSeg produced a memory leak.
