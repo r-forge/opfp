@@ -5,7 +5,7 @@ multiBinSeg <- function
  Kmax
 ### Maximum number of change-points
  ){
-  if(class(geno) == "matrix"){
+  if(is.matrix(geno)){
     nRow <- nrow(geno)
     nCol <- ncol(geno)
   } else {

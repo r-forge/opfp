@@ -20,8 +20,8 @@ Fpop <- structure(function
 ### optimal partionning to recover the best segmentation with respect
 ### to the L2 loss with a per change-point penalty of lambda. More
 ### precisely, this function computes the solution to argmin_m
-### sum_{i=1}^n (x_i-m_i)^2 + lambda * sum_{i=1}^{n-1} [1+I(m_i !=
-### m_{i+1})], where the indicator function I counts the number of
+### sum_[i=1]^n (x_i-m_i)^2 + lambda * sum_[i=1]^[n-1] [1+I(m_i !=
+### m_[i+1])], where the indicator function I counts the number of
 ### changes in the mean vector m, so the total penalty term is
 ### equivalent to the number of segments.
 (x, 
