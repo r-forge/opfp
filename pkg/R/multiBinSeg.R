@@ -1,9 +1,9 @@
 multiBinSeg <- function
-### Binary segmentation of p profiles using the L2 loss
+### Binary segmentation of p profiles, each with n data, using the L2 loss
 (geno, 
-### A matrix with p columns and n lines, each column is one of the profile
+### A matrix with p columns and n lines (or a n-vector which is treated as 1-column matrix), each column is one of the profiles to segment, and each column has its own set of mean parameters.
  Kmax
-### Maximum number of change-points
+### Maximum number of change-points, should be less than number of rows of geno
  ){
   if(is.matrix(geno)){
     nRow <- nrow(geno)
@@ -26,7 +26,7 @@ multiBinSeg <- function
           PACKAGE="fpop")
   ##A$Cost <- sum(geno^2) - sum(apply(geno, 2, sum)^2/nRow) + c(0, cumsum(A$RupturesCost))
   A
-### return an object with the successive change-points found by binseg t.est and the L2 cost J.est
+### return an object with the successive change-points found by binseg (t.est) and the corresponding decreases in L2 cost (J.est, always negative).
 }
 
 
