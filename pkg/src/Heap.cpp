@@ -75,7 +75,6 @@ int Heap::AddNode(Node N)
   while ((CurIndex > 0) && (MyHeap[CurIndex] < MyHeap[(CurIndex - 1) / 2]))
   {
     iterations++;
-    Rprintf("iterations=%d\n", iterations);
     Swap(MyHeap[CurIndex], MyHeap[(CurIndex - 1) / 2]);
     CurIndex = (CurIndex - 1) / 2;
   }
