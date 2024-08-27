@@ -27,12 +27,23 @@ test_that("multiBinseg ok with vector data", {
   set.seed(1)
   fpop::multiBinSeg(rnorm(16), 7)
 })
+test_that("multiBinseg error for too many changes", {
+  expect_error({
+    fpop::multiBinSeg(1:8, 8)
+  }, "too many changes, please decrease Kmax")
+})
 test_that("multiBinseg ok with matrix data", {
   data.mat <- cbind(
     c(1, 2, 11, 12),
-    c(101, 102, 111, 112))
-  fit <- fpop::multiBinSeg(data.mat, 2)
-  expect_is(fit, "list")
-  ##expect_equal(fit$t.est, TODO.expected.changes)
-  ##expect_equal(fit$J.est, TODO.expected.cost)
+    c(101, 102, 110, 112))
+  mean.mat <- matrix(
+    colMeans(data.mat), nrow(data.mat), ncol(data.mat), byrow=TRUE)
+  cost.vec <- c(
+    sum((data.mat-mean.mat)^2),
+    6*0.5^2+2,
+    4*0.5^2,
+    0)
+  fit <- fpop::multiBinSeg(data.mat, 3)
+  expect_equal(fit$t.est, c(2,3,1))
+  expect_equal(fit$J.est, diff(cost.vec))
 })

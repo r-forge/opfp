@@ -12,6 +12,9 @@ multiBinSeg <- function
     nRow <- length(geno)
     nCol <- 1
   }
+  if(nRow <= Kmax){
+    stop("too many changes, please decrease Kmax")
+  }
   A <- .C("BinSeg_interface", 
           x_i= as.double((geno)),
           K= as.integer(Kmax),
